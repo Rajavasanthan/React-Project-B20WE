@@ -15,6 +15,7 @@ import Profile from './profile';
 import ManageUsers from './manageusers';
 import CreateUser from './createuser';
 import { UserProvider } from './usercontext';
+import EditUser from './edit-user';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <UserProvider>
                   <Route path="/manage-users" component={ManageUsers} />
                   <Route path="/create-users" component={CreateUser} />
+                  <Route path="/edit-user/:id" component={EditUser} />
                 </UserProvider>
 
                 <Route path="/" component={Home} />

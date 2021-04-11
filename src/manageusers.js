@@ -21,6 +21,7 @@ export default function ManageUsers() {
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Office</th>
@@ -43,15 +44,16 @@ export default function ManageUsers() {
                             {
                                 data.userData.map((user) => {
                                     return <tr>
+                                        <td>{user.id}</td>
                                         <td>{user.userName}</td>
                                         <td>{user.userEmail}</td>
                                         <td>{user.userCountry}</td>
                                         <td>{user.userCity}</td>
                                         <td>{user.userState}</td>
-                                       <td>
-                                           <button className="btn btn-sm btn-primary">Edit</button>
-                                           <button className="btn btn-sm btn-danger">Delete</button>
-                                           </td>
+                                        <td>
+                                            <Link to={`/edit-user/${user.id}`}><button className="btn btn-sm btn-primary">Edit</button></Link>
+                                            <button className="btn btn-sm btn-danger">Delete</button>
+                                        </td>
                                     </tr>
                                 })
                             }

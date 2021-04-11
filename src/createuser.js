@@ -1,7 +1,9 @@
 import { useContext, useState } from "react"
 import UserContext from "./usercontext";
+import { useHistory } from 'react-router-dom';
 
-export default function CreateUser() {
+
+export default function CreateUser(props) {
     let [userName, setUserName] = useState("");
     let [userEmail, setUserEmail] = useState("");
     let [userCountry, setUserCountry] = useState("");
@@ -9,15 +11,31 @@ export default function CreateUser() {
     let [userCity, setUserCity] = useState("");
 
     let data = useContext(UserContext)
+    const history = useHistory();
 
-    let handleSubmit = () => {
+    let handleSubmit = async () => {
+        await fetch("https://5cdd0a92b22718001417c19d.mockapi.io/api/users", {
+            method: "POST",
+            body: JSON.stringify({
+                userName,
+                userEmail,
+                userCountry,
+                userState,
+                userCity
+            }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
         data.setUserData([...data.userData, {
+            id: data.userData.length + 1,
             userName,
             userEmail,
             userCountry,
             userState,
             userCity
         }])
+        history.push("/manage-users");
     }
 
     return <>
